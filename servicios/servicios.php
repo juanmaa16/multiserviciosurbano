@@ -3,11 +3,13 @@
 @include_once 'init.php';
 include_once ROOT_DIR . '/datos/usuarios.php';
 include_once ROOT_DIR . '/datos/universidades.php';
+include_once ROOT_DIR . '/datos/carreras.php';
 
 class Servicios {
 
     private $usuariosRepository;
     private $universidadesRepository;
+    private $carrerasRepository;
 
     public function __construct() {
         
@@ -44,8 +46,33 @@ class Servicios {
     }
 
     public function getUniversidades() {
-        $this->universidadesRepository = new DataUniversidades();
-        return $this->universidadesRepository->getUniversidades();
+        $this->carrerasRepository = new DataUniversidades();
+        return $this->carrerasRepository->getUniversidades();
+    }
+    
+    public function insertCarrera($oCarrera) {
+        $this->carrerasRepository = new DataCarreras();
+        $this->carrerasRepository->insertCarrera($oCarrera);
+    }
+
+    public function updateCarrera($oCarrera) {
+        $this->carrerasRepository = new DataCarreras();
+        $this->carrerasRepository->updateCarrera($oCarrera);
+    }
+
+    public function deleteCarrera($oCarrera) {
+        $this->carrerasRepository = new DataCarreras();
+        $this->carrerasRepository->deleteCarrera($oCarrera);
+    }
+
+    public function getCarreraById($idCarrera) {
+        $this->carrerasRepository = new DataCarreras();
+        return $this->carrerasRepository->getCarreraById($idCarrera);
+    }
+
+    public function getCarreras() {
+        $this->carrerasRepository = new DataCarreras();
+        return $this->carrerasRepository->getCarreras();
     }
 
 }

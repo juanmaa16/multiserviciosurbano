@@ -1,9 +1,10 @@
 <?php
 
-class Universidad {
+class Carrera {
 
     private $id;
     private $nombre;
+    private $idUniversidad;
 
     public function getId() {
         return $this->id;
@@ -21,5 +22,14 @@ class Universidad {
         $this->nombre = $nombre;
     }
 
+    public function getIdUniversidad() {
+        return $this->idUniversidad;
+    }
+
+    public function setIdUniversidad($idUniversidad) {
+        $this->idUniversidad = $idUniversidad;
+    }
+
 }
+
 ?>
