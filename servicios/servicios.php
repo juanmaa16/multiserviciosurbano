@@ -4,12 +4,14 @@
 include_once ROOT_DIR . '/datos/usuarios.php';
 include_once ROOT_DIR . '/datos/universidades.php';
 include_once ROOT_DIR . '/datos/carreras.php';
+include_once ROOT_DIR . '/datos/materias.php';
 
 class Servicios {
 
     private $usuariosRepository;
     private $universidadesRepository;
     private $carrerasRepository;
+    private $materiasRepository;
 
     public function __construct() {
         
@@ -49,7 +51,7 @@ class Servicios {
         $this->carrerasRepository = new DataUniversidades();
         return $this->carrerasRepository->getUniversidades();
     }
-    
+
     public function insertCarrera($oCarrera) {
         $this->carrerasRepository = new DataCarreras();
         $this->carrerasRepository->insertCarrera($oCarrera);
@@ -73,6 +75,31 @@ class Servicios {
     public function getCarreras() {
         $this->carrerasRepository = new DataCarreras();
         return $this->carrerasRepository->getCarreras();
+    }
+
+    public function insertMateria($oMateria) {
+        $this->materiasRepository = new DataMaterias();
+        $this->materiasRepository->insertMateria($oMateria);
+    }
+
+    public function updateMateria($oMateria) {
+        $this->materiasRepository = new DataMaterias();
+        $this->materiasRepository->updateMateria($oMateria);
+    }
+
+    public function deleteMateria($oMateria) {
+        $this->materiasRepository = new DataMaterias();
+        $this->materiasRepository->deleteMateria($oMateria);
+    }
+
+    public function getMateriaById($idMateria) {
+        $this->materiasRepository = new DataMaterias();
+        return $this->materiasRepository->getMateriaById($idMateria);
+    }
+
+    public function getMaterias() {
+        $this->materiasRepository = new DataMaterias();
+        return $this->materiasRepository->getMaterias();
     }
 
 }
