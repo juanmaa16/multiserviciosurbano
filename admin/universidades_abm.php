@@ -8,10 +8,23 @@ $servicios = new Servicios();
 
 $action = $_GET['action'];
 if ($action == "add") {
-    $nombre_universidad = $_POST['nombre_universidad'];
-    echo $nombre_universidad;
+    $nombreUniversidad = $_POST['nombre_universidad'];
     $oUniversidad = new Universidad();
-    $oUniversidad->setNombre($nombre_universidad);
+    $oUniversidad->setNombre($nombreUniversidad);
     $servicios->insertUniversidad($oUniversidad);
+} elseif ($action == "edit") {
+    $nombreUniversidad = $_POST['nombre_universidad'];
+    $idUniversidad = $_POST['id_universidad'];
+    $oUniversidad = new Universidad();
+    $oUniversidad->setId($idUniversidad);
+    $oUniversidad->setNombre($nombreUniversidad);
+    $servicios->updateUniversidad($oUniversidad);
+} elseif ($action == "del") {
+    $idUniversidad = $_GET['id'];
+    $oUniversidad = new Universidad();
+    $oUniversidad->setId($idUniversidad);
+    $servicios->deleteUniversidad($oUniversidad);
 }
+header("Location: universidades.php");
+//falta redireccionar a la lista
 ?>

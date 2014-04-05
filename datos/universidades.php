@@ -19,6 +19,22 @@ class DataUniversidades extends Data implements UniversidadesRepository {
         $stmt->close();
     }
 
+    public function updateUniversidad(Universidad $oUniversidad) {
+        $non_query = "UPDATE universidades SET nombre_universidad=? WHERE id_universidad=?";
+        $stmt = $this->prepareStmt($non_query);
+        $stmt->bind_param('si', $oUniversidad->getNombre(), $oUniversidad->getId());
+        $stmt->execute();
+        $stmt->close();
+    }
+    
+    public function deleteUniversidad(Universidad $oUniversidad) {
+        $non_query = "DELETE FROM universidades WHERE id_universidad=?";
+        $stmt = $this->prepareStmt($non_query);
+        $stmt->bind_param('i', $oUniversidad->getId());
+        $stmt->execute();
+        $stmt->close();
+    }
+
     public function getUniversidadById($idUniversidad) {
         $query = "SELECT * FROM universidades WHERE id_universidad=?";
         $stmt = $this->prepareStmt($query);
@@ -35,7 +51,7 @@ class DataUniversidades extends Data implements UniversidadesRepository {
     }
 
     public function getUniversidades() {
-        $query = "SELECT * FROM universidades";
+        $query = "SELECT * FROM universidades ORDER BY id_universidad DESC";
         $stmt = $this->prepareStmt($query);
         $stmt->execute();
         $result = $stmt->get_result();

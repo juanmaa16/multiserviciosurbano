@@ -28,6 +28,16 @@ class Servicios {
         $this->universidadesRepository->insertUniversidad($oUniversidad);
     }
 
+    public function updateUniversidad($oUniversidad) {
+        $this->universidadesRepository = new DataUniversidades();
+        $this->universidadesRepository->updateUniversidad($oUniversidad);
+    }
+
+    public function deleteUniversidad($oUniversidad) {
+        $this->universidadesRepository = new DataUniversidades();
+        $this->universidadesRepository->deleteUniversidad($oUniversidad);
+    }
+
     public function getUniversidadById($idUniversidad) {
         $this->universidadesRepository = new DataUniversidades();
         return $this->universidadesRepository->getUniversidadById($idUniversidad);
