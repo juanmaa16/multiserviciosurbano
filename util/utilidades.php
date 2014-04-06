@@ -104,6 +104,11 @@ class Utilidades {
         }
     }
 
+    public static function my_date_parse($date) {
+        $mysqldate = explode("-", $date);
+        return $mysqldate[2] . "-" . $mysqldate[1] . "-" . $mysqldate[0];
+    }
+
 }
 
 ?>

@@ -1,33 +1,36 @@
 <?php
 
 include_once '../init.php';
+include_once ROOT_DIR . '/util/utilidades.php';
 include_once ROOT_DIR . '/servicios/servicios.php';
-include_once ROOT_DIR . '/entidades/materia.php';
+include_once ROOT_DIR . '/entidades/documento.php';
 
 $servicios = new Servicios();
 
 $action = $_GET['action'];
 if ($action == "add") {
-    $nombreMateria = $_POST['nombre_materia'];
-    $idCarrera = $_POST['id_carrera'];
-    $oMateria = new Materia();
-    $oMateria->setNombre($nombreMateria);
-    $oMateria->setIdCarrera($idCarrera);
-    $servicios->insertMateria($oMateria);
+    $codigoDocumento = $_POST['documento_codigo'];
+    $pathDocumento = "documentos"; //hardcodeado
+    $fechaDocumento = Utilidades::my_date_parse($_POST['documento_fecha']);
+    $paginasDocumento = $_POST['documento_paginas'];
+    $idMateria = $_POST['id_materia'];
+    $nombreDocumento = $_FILES["nombre"]["name"];
+    $oDocumento = new Documento();
+    $oDocumento->setId($codigoDocumento);
+    $oDocumento->setNombre($nombreDocumento);
+    $oDocumento->setPath($pathDocumento);
+    $oDocumento->setPaginas($paginasDocumento);
+    $oDocumento->setFecha($fechaDocumento);
+    $oDocumento->setIdMateria($idMateria);
+    $servicios->insertDocumento($oDocumento);
+    move_uploaded_file($_FILES["nombre"]["tmp_name"], ROOT_DIR . "/documentos/" . $_FILES["nombre"]["name"]);
 } elseif ($action == "edit") {
-    $idMateria= $_POST['id_materia'];
-    $nombreMateria = $_POST['nombre_materia'];
-    $idCarrera= $_POST['id_carrera'];
-    $oMateria = new Materia();
-    $oMateria->setId($idMateria);
-    $oMateria->setNombre($nombreMateria);
-    $oMateria->setIdCarrera($idCarrera);
-    $servicios->updateMateria($oMateria);
+    //TODO
 } elseif ($action == "del") {
-    $idMateria = $_GET['id'];
-    $oMateria = new Materia();
-    $oMateria->setId($idMateria);
-    $servicios->deleteMateria($oMateria);
+    $codigoDocumento = $_GET['id'];
+    $oDocumento = $servicios->getDocumentoById($codigoDocumento);
+    $servicios->deleteDocumento($oDocumento);
+    unlink(ROOT_DIR . "/documentos/" . $oDocumento->getNombre());
 }
-header("Location: materias.php");
+header("Location: documentos.php");
 ?>

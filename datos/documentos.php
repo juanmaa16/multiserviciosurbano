@@ -13,7 +13,7 @@ class DataDocumentos extends Data implements DocumentosRepository {
 
     public function insertDocumento(Documento $oDocumento) {
         $non_query = "INSERT INTO documentos (id_documento,documento_path,documento_nombre_archivo,
-            documento_fecha,documento_nro_paginas,id_materia) VALUES (?,?)";
+            documento_fecha,documento_nro_paginas,id_materia) VALUES (?,?,?,?,?,?)";
         $stmt = $this->prepareStmt($non_query);
         $stmt->bind_param('ssssii',$oDocumento->getId(), $oDocumento->getPath(), $oDocumento->getNombre(), $oDocumento->getFecha(), $oDocumento->getPaginas(), $oDocumento->getIdMateria());
         $stmt->execute();

@@ -4,17 +4,18 @@ include_once '../init.php';
 include_once ROOT_DIR . '/servicios/servicios.php';
 include_once ROOT_DIR . '/entidades/universidad.php';
 include_once ROOT_DIR . '/entidades/carrera.php';
+include_once ROOT_DIR . '/entidades/materia.php';
 
 $servicios = new Servicios();
 
-$idUniversidad = $_POST['idUniversidad'];
+$idCarrera = $_POST['idCarrera'];
 
-$vCarreras = $servicios->getCarrerasByIdUniversidad($idUniversidad);
+$vMaterias = $servicios->getMateriasByIdCarrera($idCarrera);
 
-$opciones = '<option disabled="disabled" selected="selected">Seleccione carrera...</option>';
+$opciones = '<option disabled="disabled" selected="selected">Seleccione materia...</option>';
 
-foreach ($vCarreras as $oCarrera) {
-    $opciones.='<option value="' . $oCarrera->getId() . '">' . $oCarrera->getNombre() . '</option>';
+foreach ($vMaterias as $oMateria) {
+    $opciones.='<option value="' . $oMateria->getId() . '">' . $oMateria->getNombre() . '</option>';
 }
 
 echo $opciones;
