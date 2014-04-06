@@ -5,6 +5,7 @@ include_once ROOT_DIR . '/datos/usuarios.php';
 include_once ROOT_DIR . '/datos/universidades.php';
 include_once ROOT_DIR . '/datos/carreras.php';
 include_once ROOT_DIR . '/datos/materias.php';
+include_once ROOT_DIR . '/datos/documentos.php';
 
 class Servicios {
 
@@ -12,6 +13,7 @@ class Servicios {
     private $universidadesRepository;
     private $carrerasRepository;
     private $materiasRepository;
+    private $documentosRepository;
 
     public function __construct() {
         
@@ -105,6 +107,36 @@ class Servicios {
     public function getMaterias() {
         $this->materiasRepository = new DataMaterias();
         return $this->materiasRepository->getMaterias();
+    }
+
+    public function insertDocumento($oDocumento) {
+        $this->documentosRepository = new DataDocumentos();
+        $this->documentosRepository->insertDocumento($oDocumento);
+    }
+
+    public function updateDocumento($oDocumento) {
+        $this->documentosRepository = new DataDocumentos();
+        $this->documentosRepository->updateDocumento($oDocumento);
+    }
+
+    public function deleteDocumento($oDocumento) {
+        $this->documentosRepository = new DataDocumentos();
+        $this->documentosRepository->deleteDocumento($oDocumento);
+    }
+
+    public function getDocumentoById($idDocumento) {
+        $this->documentosRepository = new DataDocumentos();
+        return $this->documentosRepository->getDocumentoById($idDocumento);
+    }
+
+    public function getDocumentos() {
+        $this->documentosRepository = new DataDocumentos();
+        return $this->documentosRepository->getDocumentos();
+    }
+
+    public function getDocumentosByIdMateria($idMateria) {
+        $this->documentosRepository = new DataDocumentos();
+        return $this->documentosRepository->getDocumentosByIdMateria($idMateria);
     }
 
 }
