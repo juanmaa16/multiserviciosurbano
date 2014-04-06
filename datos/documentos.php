@@ -53,7 +53,7 @@ class DataDocumentos extends Data implements DocumentosRepository {
     }
 
     public function getDocumentos() {
-        $query = "SELECT * FROM documentos ORDER BY id_documento DESC";
+        $query = "SELECT * FROM documentos ORDER BY documento_fecha DESC";
         $stmt = $this->prepareStmt($query);
         $stmt->execute();
         $result = $stmt->get_result();

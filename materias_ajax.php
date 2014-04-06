@@ -1,6 +1,6 @@
 <?php
 
-include_once '../init.php';
+include_once 'init.php';
 include_once ROOT_DIR . '/servicios/servicios.php';
 include_once ROOT_DIR . '/entidades/universidad.php';
 include_once ROOT_DIR . '/entidades/carrera.php';
