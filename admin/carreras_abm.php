@@ -2,29 +2,32 @@
 
 include_once '../init.php';
 include_once ROOT_DIR . '/servicios/servicios.php';
-include_once ROOT_DIR . '/entidades/universidad.php';
+include_once ROOT_DIR . '/entidades/carrera.php';
 
 $servicios = new Servicios();
 
 $action = $_GET['action'];
 if ($action == "add") {
-    $nombreUniversidad = $_POST['nombre_universidad'];
-    $oUniversidad = new Universidad();
-    $oUniversidad->setNombre($nombreUniversidad);
-    $servicios->insertUniversidad($oUniversidad);
-} elseif ($action == "edit") {
-    $nombreUniversidad = $_POST['nombre_universidad'];
+    $nombreCarrera = $_POST['nombre_carrera'];
     $idUniversidad = $_POST['id_universidad'];
-    $oUniversidad = new Universidad();
-    $oUniversidad->setId($idUniversidad);
-    $oUniversidad->setNombre($nombreUniversidad);
-    $servicios->updateUniversidad($oUniversidad);
+    $oCarrera = new Carrera();
+    $oCarrera->setNombre($nombreCarrera);
+    $oCarrera->setIdUniversidad($idUniversidad);
+    $servicios->insertCarrera($oCarrera);
+} elseif ($action == "edit") {
+    $idCarrera = $_POST['id_carrera'];
+    $nombreCarrera = $_POST['nombre_carrera'];
+    $idUniversidad = $_POST['id_universidad'];
+    $oCarrera = new Carrera();
+    $oCarrera->setId($idCarrera);
+    $oCarrera->setNombre($nombreCarrera);
+    $oCarrera->setIdUniversidad($idUniversidad);
+    $servicios->updateCarrera($oCarrera);
 } elseif ($action == "del") {
-    $idUniversidad = $_GET['id'];
-    $oUniversidad = new Universidad();
-    $oUniversidad->setId($idUniversidad);
-    $servicios->deleteUniversidad($oUniversidad);
+    $idCarrera = $_GET['id'];
+    $oCarrera = new Carrera();
+    $oCarrera->setId($idCarrera);
+    $servicios->deleteCarrera($oCarrera);
 }
-header("Location: universidades.php");
-//falta redireccionar a la lista
+header("Location: carreras.php");
 ?>

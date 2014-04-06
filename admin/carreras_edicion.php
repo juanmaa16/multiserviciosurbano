@@ -2,12 +2,17 @@
 include_once '../init.php';
 include_once ROOT_DIR . '/servicios/servicios.php';
 include_once ROOT_DIR . '/entidades/universidad.php';
+include_once ROOT_DIR . '/entidades/carrera.php';
 
 $servicios = new Servicios();
 
-$idUniversidad = $_GET['id'];
+$idCarrera = $_GET['id'];
 
-$oUniversidad = $servicios->getUniversidadById($idUniversidad);
+$oCarrera = $servicios->getCarreraById($idCarrera);
+$oUniversidad = $servicios->getUniversidadById($oCarrera->getIdUniversidad());
+
+
+$vUniversidades = $servicios->getUniversidades(); //obtengo todas las universidades para listarlas
 ?>
 <html>
     <head>
@@ -21,15 +26,23 @@ $oUniversidad = $servicios->getUniversidadById($idUniversidad);
 
             <div id="contenido">
                 <div style="color:white; margin-left:40px;">
-                    <h1 id="consultar-texto">CARGAR UNIVERSIDAD</h1>
+                    <h1 id="consultar-texto">EDITAR CARRERA</h1>
                 </div>
                 <div id="centro">
                     <div style="margin-top:40px;">
-                        <form action="universidades_abm.php?action=edit" method="post">
-                            <label>Universidad</label><input type="text" class="textbox" name="nombre_universidad" value="<?php echo $oUniversidad->getNombre(); ?>"><br/><br/>
-                            <input type="hidden" name="id_universidad" value="<?php echo $idUniversidad ?>"/>
-                            <label>&nbsp;</label><input type="submit" class="textbox" value="Agregar universidad">                 
-                        </form>
+                        <form action="carreras_abm.php?action=edit" method="post">
+                            <label>Universidad</label>
+                            <select name="id_universidad" class="textbox">                                
+                                <?php foreach ($vUniversidades as $oUniversidad) {
+                                    ?>
+                                    <option value="<?php echo $oUniversidad->getId(); ?>" <?php echo ($oUniversidad->getId() == $oCarrera->getIdUniversidad()) ? 'selected' : ''; ?>><?php echo $oUniversidad->getNombre(); ?></option>
+                                <?php } ?>
+                            </select><br/><br/>
+                            <label>Carrera</label><input type="text" class="textbox" name="nombre_carrera" value="<?php echo $oCarrera->getNombre(); ?>">
+                            <input type="hidden" name="id_carrera" value="<?php echo $idCarrera; ?>"/>
+                            <br/><br/>
+                            <label>&nbsp;</label><input type="submit" class="textbox" value="Editar carrera">
+                        </form>    
                     </div>
 
                 </div>
