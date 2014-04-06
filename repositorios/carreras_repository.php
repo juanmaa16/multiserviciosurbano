@@ -7,6 +7,7 @@ interface CarrerasRepository {
      public function deleteCarrera(Carrera $oCarrera);
      public function getCarreras();
      public function getCarreraById($idCarrera);
+     public function getCarrerasByIdUniversidad($idUniversidad);
 }
 
 ?>

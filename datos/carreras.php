@@ -50,6 +50,24 @@ class DataCarreras extends Data implements CarrerasRepository {
         return $oCarrera;
     }
 
+    public function getCarrerasByIdUniversidad($idUniversidad) {
+        $query = "SELECT * FROM carreras WHERE id_universidad=? ORDER BY id_carrera DESC";
+        $stmt = $this->prepareStmt($query);
+        $stmt->bind_param('i', $idUniversidad);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $vCarreras = array();
+        $index = 0;
+        while ($row = $result->fetch_assoc()) {
+            $oCarrera = $this->generaCarrera($row);
+            $vCarreras[$index] = $oCarrera;
+            $index++;
+        };
+        $stmt->close();
+        return $vCarreras;
+    }
+
     public function getCarreras() {
         $query = "SELECT * FROM carreras ORDER BY id_carrera DESC";
         $stmt = $this->prepareStmt($query);
