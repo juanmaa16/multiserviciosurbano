@@ -12,10 +12,10 @@ class DataDocumentos extends Data implements DocumentosRepository {
     }
 
     public function insertDocumento(Documento $oDocumento) {
-        $non_query = "INSERT INTO documentos (documento_path,documento_nombre_archivo,
+        $non_query = "INSERT INTO documentos (id_documento,documento_path,documento_nombre_archivo,
             documento_fecha,documento_nro_paginas,id_materia) VALUES (?,?)";
         $stmt = $this->prepareStmt($non_query);
-        $stmt->bind_param('sssii', $oDocumento->getPath(), $oDocumento->getNombre(), $oDocumento->getFecha(), $oDocumento->getPaginas(), $oDocumento->getIdMateria());
+        $stmt->bind_param('ssssii',$oDocumento->getId(), $oDocumento->getPath(), $oDocumento->getNombre(), $oDocumento->getFecha(), $oDocumento->getPaginas(), $oDocumento->getIdMateria());
         $stmt->execute();
         $stmt->close();
     }
@@ -24,7 +24,7 @@ class DataDocumentos extends Data implements DocumentosRepository {
         $non_query = "UPDATE documentos SET documento_path=?,documento_nombre_archivo=?,
             documento_fecha=?,documento_nro_paginas=?,id_materia=? WHERE id_documento=?";
         $stmt = $this->prepareStmt($non_query);
-        $stmt->bind_param('sssiii', $oDocumento->getPath(), $oDocumento->getNombre(), $oDocumento->getFecha(), $oDocumento->getPaginas(), $oDocumento->getIdMateria(), $oDocumento->getId());
+        $stmt->bind_param('sssiis', $oDocumento->getPath(), $oDocumento->getNombre(), $oDocumento->getFecha(), $oDocumento->getPaginas(), $oDocumento->getIdMateria(), $oDocumento->getId());
         $stmt->execute();
         $stmt->close();
     }
@@ -32,7 +32,7 @@ class DataDocumentos extends Data implements DocumentosRepository {
     public function deleteDocumento(Documento $oDocumento) {
         $non_query = "DELETE FROM documentos WHERE id_documento=?";
         $stmt = $this->prepareStmt($non_query);
-        $stmt->bind_param('i', $oDocumento->getId());
+        $stmt->bind_param('s', $oDocumento->getId());
         $stmt->execute();
         $stmt->close();
     }
@@ -40,7 +40,7 @@ class DataDocumentos extends Data implements DocumentosRepository {
     public function getDocumentoById($idDocumento) {
         $query = "SELECT * FROM documentos WHERE id_documento=?";
         $stmt = $this->prepareStmt($query);
-        $stmt->bind_param('i', $idDocumento);
+        $stmt->bind_param('s', $idDocumento);
         $stmt->execute();
         $result = $stmt->get_result();
 
