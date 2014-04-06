@@ -77,6 +77,11 @@ class Servicios {
         return $this->carrerasRepository->getCarreras();
     }
 
+    public function getCarrerasByIdUniversidad($idUniversidad) {
+        $this->carrerasRepository = new DataCarreras();
+        return $this->carrerasRepository->getCarrerasByIdUniversidad($idUniversidad);
+    }
+
     public function insertMateria($oMateria) {
         $this->materiasRepository = new DataMaterias();
         $this->materiasRepository->insertMateria($oMateria);
