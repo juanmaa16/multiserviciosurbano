@@ -67,6 +67,24 @@ class DataMaterias extends Data implements MateriasRepository {
         return $vMaterias;
     }
 
+    public function getMateriasByIdCarrera($idCarrera) {
+        $query = "SELECT * FROM materias WHERE id_carrera=? ORDER BY id_materia DESC";
+        $stmt = $this->prepareStmt($query);
+        $stmt->bind_param('i', $idCarrera);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $vMaterias = array();
+        $index = 0;
+        while ($row = $result->fetch_assoc()) {
+            $oMateria = $this->generaMateria($row);
+            $vMaterias[$index] = $oMateria;
+            $index++;
+        };
+        $stmt->close();
+        return $vMaterias;
+    }
+
     private function generaMateria($row) {
         $oMateria = new Materia();
         $oMateria->setId($row['id_materia']);
