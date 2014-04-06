@@ -1,5 +1,6 @@
 <html>
     <head>
+        <title>Multiservicios Urbano - Administración</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="../css/style.css">
         <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
@@ -8,7 +9,7 @@
     <body>
 
         <div id="contenedor">
-            <?php include '../header.php'; ?>
+            <?php include 'header.php'; ?>
 
 
             <div id="contenido">
@@ -28,7 +29,7 @@
                 </div>
             </div>
 
-            <?php include '../footer.php'; ?>
+            <?php include 'footer.php'; ?>
         </div>
     </body>
 </html>

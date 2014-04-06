@@ -1,4 +1,5 @@
 <?php
+include 'admin_check.php';
 include_once '../init.php';
 include_once ROOT_DIR . '/servicios/servicios.php';
 include_once ROOT_DIR . '/entidades/universidad.php';
@@ -10,13 +11,15 @@ $vUniversidades = $servicios->getUniversidades();
 
 <html>
     <head>
+        <meta charset="UTF-8">
+        <title>Multiservicios Urbano - Administración - Universidades</title>
         <link rel="stylesheet" type="text/css" href="../css/style.css">
         <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <div id="contenedor">
 
-            <?php include '../header.php'; ?>
+            <?php include 'header.php'; ?>
 
             <div id="contenido">
                 <div style="color:white; margin-left:40px;">
@@ -32,10 +35,10 @@ $vUniversidades = $servicios->getUniversidades();
                         foreach ($vUniversidades as $oUniversidad) {
                             ?>
                             <tr>
-                                <td><?php echo $oUniversidad->getNombre();?></td>
+                                <td><?php echo $oUniversidad->getNombre(); ?></td>
                                 <td>
-                                    <a href="universidades_edicion.php?id=<?php echo $oUniversidad->getId();?>"><img src="../images/edit.png"/></a> 
-                                    <a href="universidades_abm.php?action=del&id=<?php echo $oUniversidad->getId();?>"><img src="../images/delete.png"/></a>
+                                    <a href="universidades_edicion.php?id=<?php echo $oUniversidad->getId(); ?>"><img src="../images/edit.png"/></a> 
+                                    <a href="universidades_abm.php?action=del&id=<?php echo $oUniversidad->getId(); ?>"><img src="../images/delete.png"/></a>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -47,7 +50,7 @@ $vUniversidades = $servicios->getUniversidades();
                 </div>
             </div>
 
-            <?php include '../footer.php'; ?>
+            <?php include 'footer.php'; ?>
         </div>
     </body>
 </html>

@@ -1,4 +1,5 @@
 <?php
+include 'admin_check.php';
 include_once '../init.php';
 include_once ROOT_DIR . '/servicios/servicios.php';
 include_once ROOT_DIR . '/entidades/universidad.php';
@@ -13,6 +14,7 @@ $vUniversidades = $servicios->getUniversidades(); //obtengo todas las universida
 <html>
     <head>
         <meta charset="UTF-8">
+        <title>Multiservicios Urbano - Administración - Documentos</title>
         <link rel="stylesheet" type="text/css" href="../css/style.css">
         <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <script language="javascript" src="../js/jquery-1.11.0.min.js"></script>

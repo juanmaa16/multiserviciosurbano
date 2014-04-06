@@ -1,12 +1,16 @@
+<?php
+include 'admin_check.php';
+?>
 <html>
     <head>
+        <title>Multiservicios Urbano - Administración - Universidades</title>
         <link rel="stylesheet" type="text/css" href="../css/style.css">
         <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <div id="contenedor">
 
-            <?php include_once '../header.php'; ?>
+            <?php include_once 'header.php'; ?>
 
             <div id="contenido">
                 <div style="color:white; margin-left:40px;">
@@ -22,7 +26,7 @@
                 </div>
             </div>
 
-            <?php include '../footer.php'; ?>
+            <?php include 'footer.php'; ?>
         </div>
     </body>
 </html>

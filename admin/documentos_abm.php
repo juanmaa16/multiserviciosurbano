@@ -1,5 +1,5 @@
 <?php
-
+include 'admin_check.php';
 include_once '../init.php';
 include_once ROOT_DIR . '/util/utilidades.php';
 include_once ROOT_DIR . '/servicios/servicios.php';

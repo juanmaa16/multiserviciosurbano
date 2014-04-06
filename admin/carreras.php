@@ -1,4 +1,5 @@
 <?php
+include 'admin_check.php';
 include_once '../init.php';
 include_once ROOT_DIR . '/servicios/servicios.php';
 include_once ROOT_DIR . '/entidades/carrera.php';
@@ -11,13 +12,14 @@ $vCarreras = $servicios->getCarreras();
 
 <html>
     <head>
+        <title>Multiservicios Urbano - Administración - Carreras</title>
         <link rel="stylesheet" type="text/css" href="../css/style.css">
         <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <div id="contenedor">
 
-            <?php include '../header.php'; ?>
+            <?php include 'header.php'; ?>
 
             <div id="contenido">
                 <div style="color:white; margin-left:40px;">
@@ -51,7 +53,7 @@ $vCarreras = $servicios->getCarreras();
                 </div>
             </div>
 
-            <?php include '../footer.php'; ?>
+            <?php include 'footer.php'; ?>
         </div>
     </body>
 </html>
