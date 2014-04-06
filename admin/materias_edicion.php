@@ -48,7 +48,7 @@ $vCarreras = $servicios->getCarrerasByIdUniversidad($oUniversidad->getId()); //o
                 </div>
                 <div id="centro">
                     <div style="margin-top:40px;">
-                        <form action="materias_abm.php?action=add" method="post">
+                        <form action="materias_abm.php?action=edit" method="post">
                             <label>Universidad</label>
                             <select name="id_universidad" id="universidad" class="textbox">                           
                                 <?php foreach ($vUniversidades as $oUniversidad) {
@@ -66,6 +66,7 @@ $vCarreras = $servicios->getCarrerasByIdUniversidad($oUniversidad->getId()); //o
                             </select>
                             <br/><br/>
                             <label>Materia</label><input type="text" class="textbox" name="nombre_materia" value="<?php echo $oMateria->getNombre(); ?>">
+                            <input type="hidden" name="id_materia" value="<?php echo $oMateria->getId(); ?>"/>
                             <br/><br/>
                             <label>&nbsp;</label><input type="submit" class="textbox" value="Editar materia">
                         </form>    
