@@ -21,7 +21,7 @@ $vUniversidades = $servicios->getUniversidades(); //obtengo todas las universida
 
             <div id="contenido">
                 <div style="color:white; margin-left:40px;">
-                    <h1 id="consultar-texto">CARGAR CARRERA</h1>
+                    <h1 id="consultar-texto">CARGAR UNIVERSIDAD</h1>
                 </div>
                 <div id="centro">
                     <div style="margin-top:40px;">
