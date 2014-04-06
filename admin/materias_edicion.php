@@ -7,9 +7,16 @@ include_once ROOT_DIR . '/entidades/materia.php';
 
 $servicios = new Servicios();
 
-$vUniversidades = $servicios->getUniversidades(); //obtengo todas las universidades para listarlas
-?>
+$idMateria = $_GET['id'];
 
+$oMateria = $servicios->getMateriaById($idMateria);
+$oCarrera = $servicios->getCarreraById($oMateria->getIdCarrera());
+$oUniversidad = $servicios->getUniversidadById($oCarrera->getIdUniversidad());
+
+
+$vUniversidades = $servicios->getUniversidades(); //obtengo todas las universidades para listarlas
+$vCarreras = $servicios->getCarrerasByIdUniversidad($oUniversidad->getId()); //obtengo todas las carreras de la univ para listarlas
+?>
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="../css/style.css">
@@ -37,27 +44,30 @@ $vUniversidades = $servicios->getUniversidades(); //obtengo todas las universida
 
             <div id="contenido">
                 <div style="color:white; margin-left:40px;">
-                    <h1 id="consultar-texto">CARGAR MATERIA</h1>
+                    <h1 id="consultar-texto">EDITAR CARRERA</h1>
                 </div>
                 <div id="centro">
                     <div style="margin-top:40px;">
                         <form action="materias_abm.php?action=add" method="post">
                             <label>Universidad</label>
-                            <select name="id_universidad" id="universidad" class="textbox">                                
-                                <option disabled="disabled" selected="selected">Seleccione universidad...</option>
+                            <select name="id_universidad" id="universidad" class="textbox">                           
                                 <?php foreach ($vUniversidades as $oUniversidad) {
                                     ?>
-                                    <option value="<?php echo $oUniversidad->getId(); ?>"><?php echo $oUniversidad->getNombre(); ?></option>
+                                    <option value="<?php echo $oUniversidad->getId(); ?>"<?php echo ($oUniversidad->getId() == $oCarrera->getIdUniversidad()) ? 'selected' : ''; ?>><?php echo $oUniversidad->getNombre(); ?></option>
                                 <?php } ?>
                             </select>
                             <br/><br/>
                             <label>Carrera</label>
                             <select name="id_carrera" id="carrera" class="textbox"> 
+                                <?php foreach ($vCarreras as $oCarrera) {
+                                    ?>
+                                    <option value="<?php echo $oCarrera->getId(); ?>"<?php echo ($oCarrera->getId() == $oMateria->getIdCarrera()) ? 'selected' : ''; ?>><?php echo $oCarrera->getNombre(); ?></option>
+                                <?php } ?>
                             </select>
                             <br/><br/>
-                            <label>Materia</label><input type="text" class="textbox" name="nombre_materia">
+                            <label>Materia</label><input type="text" class="textbox" name="nombre_materia" value="<?php echo $oMateria->getNombre(); ?>">
                             <br/><br/>
-                            <label>&nbsp;</label><input type="submit" class="textbox" value="Agregar materia">
+                            <label>&nbsp;</label><input type="submit" class="textbox" value="Editar materia">
                         </form>    
                     </div>
 
