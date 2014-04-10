@@ -132,9 +132,17 @@ if (isset($idUniversidad) && isset($idCarrera) && isset($idMateria)) {
                                     <td><?php echo $oDocumento->getNombre(); ?></td>
                                     <td><?php echo $oDocumento->getPaginas(); ?></td>
                                     <td>
-                                        <a href="<?php echo $oDocumento->getPath() . "/" . $oDocumento->getNombre(); ?>" target="_blank">
-                                            <img src="images/pages.png">
-                                        </a>
+                                        <?php
+                                        $nombreArchivoDocumento = $oDocumento->getNombreArchivo();
+                                        if (isset($nombreArchivoDocumento) && $nombreArchivoDocumento != NULL) {
+                                            ?>
+                                            <a href="<?php echo $oDocumento->getPath() . "/" . $oDocumento->getNombreArchivo(); ?>" target="_blank">
+                                                <img src="images/pages.png">
+                                            </a>
+                                            <?php
+                                        }
+                                        ?>
+
                                     </td>
                                 </tr>
                             <?php } ?>

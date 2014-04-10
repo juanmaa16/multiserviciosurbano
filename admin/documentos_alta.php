@@ -57,7 +57,7 @@ $vUniversidades = $servicios->getUniversidades(); //obtengo todas las universida
     <body>
         <div id="contenedor">
 
-            <?php include_once '../header.php'; ?>
+            <?php include_once 'header.php'; ?>
 
             <div id="contenido">
                 <div style="color:white; margin-left:40px;">
@@ -92,6 +92,14 @@ $vUniversidades = $servicios->getUniversidades(); //obtengo todas las universida
                             <label>Nro páginas</label>
                             <input type="text" name="documento_paginas" id="fecha_documento" class="textbox"/>
                             <br/><br/>
+                            <label>
+                                <a data="Si el nombre del archivo se deja en blanco, se completara con el nombre del documento">
+                                    <img src="../images/interrogation.png" width="16"/>
+                                </a>
+                                Nombre 
+                            </label>
+                            <input type="text" name="documento_nombre" class="textbox"/>
+                            <br/><br/>
                             <label>Documento</label><input type="file" name="nombre">
                             <br/><br/>
                             <label>&nbsp;</label><input type="submit" class="textbox" value="Agregar documento">
@@ -101,7 +109,7 @@ $vUniversidades = $servicios->getUniversidades(); //obtengo todas las universida
                 </div>
             </div>
 
-            <?php include '../footer.php'; ?>
+            <?php include 'footer.php'; ?>
         </div>
     </body>
 </html>

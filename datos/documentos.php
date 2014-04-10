@@ -12,19 +12,19 @@ class DataDocumentos extends Data implements DocumentosRepository {
     }
 
     public function insertDocumento(Documento $oDocumento) {
-        $non_query = "INSERT INTO documentos (id_documento,documento_path,documento_nombre_archivo,
-            documento_fecha,documento_nro_paginas,id_materia) VALUES (?,?,?,?,?,?)";
+        $non_query = "INSERT INTO documentos (id_documento,documento_path,documento_nombre,documento_nombre_archivo,
+            documento_fecha,documento_nro_paginas,id_materia) VALUES (?,?,?,?,?,?,?)";
         $stmt = $this->prepareStmt($non_query);
-        $stmt->bind_param('ssssii',$oDocumento->getId(), $oDocumento->getPath(), $oDocumento->getNombre(), $oDocumento->getFecha(), $oDocumento->getPaginas(), $oDocumento->getIdMateria());
+        $stmt->bind_param('sssssii', $oDocumento->getId(), $oDocumento->getPath(), $oDocumento->getNombre(), $oDocumento->getNombreArchivo(), $oDocumento->getFecha(), $oDocumento->getPaginas(), $oDocumento->getIdMateria());
         $stmt->execute();
         $stmt->close();
     }
 
     public function updateDocumento(Documento $oDocumento) {
-        $non_query = "UPDATE documentos SET documento_path=?,documento_nombre_archivo=?,
+        $non_query = "UPDATE documentos SET documento_path=?,documento_nombre=?,documento_nombre_archivo=?,
             documento_fecha=?,documento_nro_paginas=?,id_materia=? WHERE id_documento=?";
         $stmt = $this->prepareStmt($non_query);
-        $stmt->bind_param('sssiis', $oDocumento->getPath(), $oDocumento->getNombre(), $oDocumento->getFecha(), $oDocumento->getPaginas(), $oDocumento->getIdMateria(), $oDocumento->getId());
+        $stmt->bind_param('ssssiis', $oDocumento->getPath(), $oDocumento->getNombre(), $oDocumento->getNombreArchivo(), $oDocumento->getFecha(), $oDocumento->getPaginas(), $oDocumento->getIdMateria(), $oDocumento->getId());
         $stmt->execute();
         $stmt->close();
     }
@@ -91,7 +91,8 @@ class DataDocumentos extends Data implements DocumentosRepository {
         $oDocumento = new Documento();
         $oDocumento->setId($row['id_documento']);
         $oDocumento->setPath($row['documento_path']);
-        $oDocumento->setNombre($row['documento_nombre_archivo']);
+        $oDocumento->setNombre($row['documento_nombre']);
+        $oDocumento->setNombreArchivo($row['documento_nombre_archivo']);
         $oDocumento->setFecha($row['documento_fecha']);
         $oDocumento->setPaginas($row['documento_nro_paginas']);
         $oDocumento->setIdMateria($row['id_materia']);

@@ -5,6 +5,7 @@ class Documento {
     private $id;
     private $path;
     private $nombre;
+    private $nombreArchivo;
     private $fecha;
     private $paginas;
     private $idMateria;
@@ -55,6 +56,14 @@ class Documento {
 
     public function setIdMateria($idMateria) {
         $this->idMateria = $idMateria;
+    }
+
+    public function getNombreArchivo() {
+        return $this->nombreArchivo;
+    }
+
+    public function setNombreArchivo($nombreArchivo) {
+        $this->nombreArchivo = $nombreArchivo;
     }
 
 }
