@@ -39,13 +39,23 @@ if (isset($idUniversidad) && isset($idCarrera) && isset($idMateria)) {
                         }
                     })
                 });
-                $("#carrera").change(function(){
+                $("#anio").change(function(){
                     $.ajax({
                         url:"materias_ajax.php",
                         type: "POST",
-                        data:"idCarrera="+$("#carrera").val(),
+                        data:"idCarrera="+$("#carrera").val()+"&anioMateria="+$("#anio").val(),
                         success: function(opciones){
                             $("#materia").html(opciones);
+                        }
+                    })
+                });
+            $("#carrera").change(function(){
+                    $.ajax({
+                        url:"carreras_anios_ajax.php",
+                        type: "POST",
+                        data:"idCarrera="+$("#carrera").val(),
+                        success: function(opciones){
+                            $("#anio").html(opciones);
                         }
                     })
                 });
@@ -86,6 +96,13 @@ if (isset($idUniversidad) && isset($idCarrera) && isset($idMateria)) {
                                         }
                                     }
                                     ?>
+                                </select>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <select name="anio" id="anio">
+                                    <option disabled="disabled" selected="selected">Año</option>
                                 </select>
                             </label>
                         </li>

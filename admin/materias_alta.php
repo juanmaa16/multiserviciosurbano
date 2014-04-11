@@ -29,7 +29,18 @@ $vUniversidades = $servicios->getUniversidades(); //obtengo todas las universida
                         }
                     })
                 });
+                $("#carrera").change(function(){
+                    $.ajax({
+                        url:"carreras_anios_ajax.php",
+                        type: "POST",
+                        data:"idCarrera="+$("#carrera").val(),
+                        success: function(opciones){
+                            $("#anio").html(opciones);
+                        }
+                    })
+                });
             });
+            
         </script>
     </head>
     <body>
@@ -55,6 +66,10 @@ $vUniversidades = $servicios->getUniversidades(); //obtengo todas las universida
                             <br/><br/>
                             <label>Carrera</label>
                             <select name="id_carrera" id="carrera" class="textbox"> 
+                            </select>
+                            <br/><br/>
+                            <label>Año de cursado</label>
+                            <select name="anio_materia" id="anio" class="textbox"> 
                             </select>
                             <br/><br/>
                             <label>Materia</label><input type="text" class="textbox" name="nombre_materia">

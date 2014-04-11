@@ -36,6 +36,16 @@ $vCarreras = $servicios->getCarrerasByIdUniversidad($oUniversidad->getId()); //o
                         }
                     })
                 });
+                $("#carrera").change(function(){
+                    $.ajax({
+                        url:"carreras_anios_ajax.php",
+                        type: "POST",
+                        data:"idCarrera="+$("#carrera").val(),
+                        success: function(opciones){
+                            $("#anio").html(opciones);
+                        }
+                    })
+                });
             });
         </script>
     </head>
@@ -64,6 +74,16 @@ $vCarreras = $servicios->getCarrerasByIdUniversidad($oUniversidad->getId()); //o
                                 <?php foreach ($vCarreras as $oCarrera) {
                                     ?>
                                     <option value="<?php echo $oCarrera->getId(); ?>"<?php echo ($oCarrera->getId() == $oMateria->getIdCarrera()) ? 'selected' : ''; ?>><?php echo $oCarrera->getNombre(); ?></option>
+                                <?php } ?>
+                            </select>
+                            <br/><br/>
+                            <label>Año de cursado</label>
+                            <select name="anio_materia" id="anio" class="textbox"> 
+                                <?php 
+                                $aniosCarrera=$oCarrera->getAnios();
+                                for ($i = 1; $i <= $aniosCarrera; $i++) {
+                                    ?>
+                                    <option value="<?php echo $i; ?>"<?php echo ($i == $oMateria->getAnio()) ? 'selected' : ''; ?>><?php echo $i; ?></option>
                                 <?php } ?>
                             </select>
                             <br/><br/>

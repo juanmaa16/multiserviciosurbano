@@ -9,17 +9,21 @@ $servicios = new Servicios();
 $action = $_GET['action'];
 if ($action == "add") {
     $nombreCarrera = $_POST['nombre_carrera'];
+    $aniosCarrera = $_POST['anios_carrera'];
     $idUniversidad = $_POST['id_universidad'];
     $oCarrera = new Carrera();
     $oCarrera->setNombre($nombreCarrera);
+    $oCarrera->setAnios($aniosCarrera);
     $oCarrera->setIdUniversidad($idUniversidad);
     $servicios->insertCarrera($oCarrera);
 } elseif ($action == "edit") {
     $idCarrera = $_POST['id_carrera'];
     $nombreCarrera = $_POST['nombre_carrera'];
+    $aniosCarrera = $_POST['anios_carrera'];
     $idUniversidad = $_POST['id_universidad'];
     $oCarrera = new Carrera();
     $oCarrera->setId($idCarrera);
+    $oCarrera->setAnios($aniosCarrera);
     $oCarrera->setNombre($nombreCarrera);
     $oCarrera->setIdUniversidad($idUniversidad);
     $servicios->updateCarrera($oCarrera);

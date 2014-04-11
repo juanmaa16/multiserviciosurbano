@@ -113,6 +113,11 @@ class Servicios {
         $this->materiasRepository = new DataMaterias();
         return $this->materiasRepository->getMateriasByIdCarrera($idCarrera);
     }
+    
+    public function getMateriasByIdCarreraAnio($idCarrera,$anioMateria) {
+        $this->materiasRepository = new DataMaterias();
+        return $this->materiasRepository->getMateriasByIdCarreraAnio($idCarrera, $anioMateria);
+    }
 
     public function insertDocumento($oDocumento) {
         $this->documentosRepository = new DataDocumentos();

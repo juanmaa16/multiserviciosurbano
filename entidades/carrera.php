@@ -4,6 +4,7 @@ class Carrera {
 
     private $id;
     private $nombre;
+    private $anios;
     private $idUniversidad;
 
     public function getId() {
@@ -28,6 +29,14 @@ class Carrera {
 
     public function setIdUniversidad($idUniversidad) {
         $this->idUniversidad = $idUniversidad;
+    }
+
+    public function getAnios() {
+        return $this->anios;
+    }
+
+    public function setAnios($anios) {
+        $this->anios = $anios;
     }
 
 }

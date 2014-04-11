@@ -13,6 +13,7 @@ $vUniversidades = $servicios->getUniversidades(); //obtengo todas las universida
 <html>
     <head>
         <title>Multiservicios Urbano - Administración - Carreras</title>
+        <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="../css/style.css">
         <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     </head>
@@ -37,6 +38,16 @@ $vUniversidades = $servicios->getUniversidades(); //obtengo todas las universida
                                 <?php } ?>
                             </select><br/><br/>
                             <label>Carrera</label><input type="text" class="textbox" name="nombre_carrera">
+                            <br/><br/>
+                            <label>Cantidad de años</label>
+                            <select name="anios_carrera" class="textbox">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5" selected>5</option>
+                                <option value="6">6</option>
+                            </select>
                             <br/><br/>
                             <label>&nbsp;</label><input type="submit" class="textbox" value="Agregar carrera">
                         </form>    

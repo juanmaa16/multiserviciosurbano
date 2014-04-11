@@ -4,6 +4,7 @@ class Materia {
 
     private $id;
     private $nombre;
+    private $anio;
     private $idCarrera;
 
     public function getId() {
@@ -28,6 +29,14 @@ class Materia {
 
     public function setIdCarrera($idCarrera) {
         $this->idCarrera = $idCarrera;
+    }
+
+    public function getAnio() {
+        return $this->anio;
+    }
+
+    public function setAnio($anio) {
+        $this->anio = $anio;
     }
 
 }

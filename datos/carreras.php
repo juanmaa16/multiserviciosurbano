@@ -12,17 +12,17 @@ class DataCarreras extends Data implements CarrerasRepository {
     }
 
     public function insertCarrera(Carrera $oCarrera) {
-        $non_query = "INSERT INTO carreras (nombre_carrera,id_universidad) VALUES (?,?)";
+        $non_query = "INSERT INTO carreras (nombre_carrera,anios_carrera,id_universidad) VALUES (?,?,?)";
         $stmt = $this->prepareStmt($non_query);
-        $stmt->bind_param('si', $oCarrera->getNombre(), $oCarrera->getIdUniversidad());
+        $stmt->bind_param('sii', $oCarrera->getNombre(), $oCarrera->getAnios(), $oCarrera->getIdUniversidad());
         $stmt->execute();
         $stmt->close();
     }
 
     public function updateCarrera(Carrera $oCarrera) {
-        $non_query = "UPDATE carreras SET nombre_carrera=?,id_universidad=? WHERE id_carrera=?";
+        $non_query = "UPDATE carreras SET nombre_carrera=?, anios_carrera=?, id_universidad=? WHERE id_carrera=?";
         $stmt = $this->prepareStmt($non_query);
-        $stmt->bind_param('sii', $oCarrera->getNombre(), $oCarrera->getIdUniversidad(), $oCarrera->getId());
+        $stmt->bind_param('siii', $oCarrera->getNombre(), $oCarrera->getAnios(), $oCarrera->getIdUniversidad(), $oCarrera->getId());
         $stmt->execute();
         $stmt->close();
     }
@@ -89,6 +89,7 @@ class DataCarreras extends Data implements CarrerasRepository {
         $oCarrera = new Carrera();
         $oCarrera->setId($row['id_carrera']);
         $oCarrera->setNombre($row['nombre_carrera']);
+        $oCarrera->setAnios($row['anios_carrera']);
         $oCarrera->setIdUniversidad($row['id_universidad']);
         return $oCarrera;
     }

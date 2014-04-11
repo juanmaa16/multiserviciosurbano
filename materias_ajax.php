@@ -9,8 +9,9 @@ include_once ROOT_DIR . '/entidades/materia.php';
 $servicios = new Servicios();
 
 $idCarrera = $_POST['idCarrera'];
+$anioMateria = $_POST['anioMateria'];
 
-$vMaterias = $servicios->getMateriasByIdCarrera($idCarrera);
+$vMaterias = $servicios->getMateriasByIdCarreraAnio($idCarrera, $anioMateria);
 
 $opciones = '<option disabled="disabled" selected="selected">Seleccione materia...</option>';
 
