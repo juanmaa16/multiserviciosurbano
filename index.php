@@ -13,7 +13,8 @@ $vUniversidades = $servicios->getUniversidades();
 $idUniversidad = $_GET['idu'];
 $idCarrera = $_GET['idc'];
 $idMateria = $_GET['idm'];
-if (isset($idUniversidad) && isset($idCarrera) && isset($idMateria)) {
+$anio = $_GET['anio'];
+if (isset($idUniversidad) && isset($idCarrera) && isset($idMateria) && isset($anio)) {
     $oUniversidad = $servicios->getUniversidadById($idUniversidad);
     $oCarrera = $servicios->getCarreraById($idCarrera);
     $oMateria = $servicios->getMateriaById($idMateria);
@@ -49,7 +50,7 @@ if (isset($idUniversidad) && isset($idCarrera) && isset($idMateria)) {
                         }
                     })
                 });
-            $("#carrera").change(function(){
+                $("#carrera").change(function(){
                     $.ajax({
                         url:"carreras_anios_ajax.php",
                         type: "POST",
@@ -103,6 +104,18 @@ if (isset($idUniversidad) && isset($idCarrera) && isset($idMateria)) {
                             <label>
                                 <select name="anio" id="anio">
                                     <option disabled="disabled" selected="selected">Año</option>
+                                    <?php
+                                    if (isset($anio)) {
+                                        $aniosCarrera = $oCarrera->getAnios();
+                                        for ($i = 1; $i <= $aniosCarrera; $i++) {
+                                            if ($i == $anio) {
+                                                echo '<option value="' . $i . '" selected>' . $i . '</option>';
+                                            } else {
+                                                echo '<option value="' . $i . '">' . $i . '</option>';
+                                            }
+                                        }
+                                    }
+                                    ?>
                                 </select>
                             </label>
                         </li>
@@ -112,10 +125,10 @@ if (isset($idUniversidad) && isset($idCarrera) && isset($idMateria)) {
                                     <option disabled="disabled" selected="selected">Materia</option>
                                     <?php
                                     if (isset($idMateria)) {
-                                        $vMaterias = $servicios->getMateriasByIdCarrera($idCarrera);
+                                        $vMaterias = $servicios->getMateriasByIdCarreraAnio($idCarrera,$anio);
                                         foreach ($vMaterias as $oMateriaSelect) {
                                             ?>
-                                            <option value="<?php echo $oMateriaSelect->getId(); ?>" <?php echo ($oMateriaSelect->getId() == $idCarrera) ? 'selected' : ''; ?>><?php echo $oMateriaSelect->getNombre(); ?></option>
+                                            <option value="<?php echo $oMateriaSelect->getId(); ?>" <?php echo ($oMateriaSelect->getId() == $idMateria) ? 'selected' : ''; ?>><?php echo $oMateriaSelect->getNombre(); ?></option>
                                             <?php
                                         }
                                     }
@@ -130,7 +143,7 @@ if (isset($idUniversidad) && isset($idCarrera) && isset($idMateria)) {
                 </form>
                 <div id="centro" >
                     <?php
-                    if (isset($idUniversidad) && isset($idCarrera) && isset($idMateria)) {
+                    if (isset($idUniversidad) && isset($idCarrera) && isset($idMateria) && isset($anio)) {
                         ?>
                         <table width="85%" style="margin: 40px auto; border: solid 1px #000">
                             <tr>
