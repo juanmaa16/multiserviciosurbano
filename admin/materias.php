@@ -29,6 +29,12 @@ $vMaterias = $servicios->getMaterias();
                 </div>
                 <div id="centro">
                     <table width="85%" style="margin: 40px auto; border: solid 1px #000">
+                        <div style="margin-top: 20px;">
+                          <a href="materia-index.html">
+                            <input type="button" class="textbox" value="Nueva materia">
+                          </a>
+                        </div> 
+                        
                         <tr>
                             <td style="width: 30%;">Nombre</td>
                             <td style="width: 30%;">Carrera</td>
@@ -51,10 +57,7 @@ $vMaterias = $servicios->getMaterias();
                             </tr>
                         <?php } ?>
                     </table>
-                    <a href="materias_alta.php">
-                        <input type="button" class="textbox" value="Nueva materia">
-                    </a>
-                    <br/>
+            
                 </div>
             </div>
 
