@@ -67,8 +67,13 @@ if (isset($idUniversidad) && isset($idCarrera) && isset($idMateria) && isset($an
         <div id="contenedor">
             <?php include 'header.php'; ?>
             <div id="contenido">
-                <div style="color:white; margin-left:40px;">
-                    <h1 id="consultar-texto">CONSULTAR APUNTES</h1>
+                <div style="color:white; margin-left:40px; overflow: hidden;">
+                    <h1 id="consultar-texto" style="width: 50%;float: left;">
+                        CONSULTAR APUNTES
+                    </h1>
+                    <a title="Solo es posible realizar pedidos si cuenta con un abono" href="form-pedido.php" target="popup" onClick="window.open(this.href, this.target, 'scrollbars=0,width=305,height=395'); return false;">
+                        <img src="images/pedido.png" id="pedido"/>
+                    </a>
                 </div>	
                 <form method="get">
                     <ul id="list-select">
@@ -125,7 +130,7 @@ if (isset($idUniversidad) && isset($idCarrera) && isset($idMateria) && isset($an
                                     <option disabled="disabled" selected="selected">Materia</option>
                                     <?php
                                     if (isset($idMateria)) {
-                                        $vMaterias = $servicios->getMateriasByIdCarreraAnio($idCarrera,$anio);
+                                        $vMaterias = $servicios->getMateriasByIdCarreraAnio($idCarrera, $anio);
                                         foreach ($vMaterias as $oMateriaSelect) {
                                             ?>
                                             <option value="<?php echo $oMateriaSelect->getId(); ?>" <?php echo ($oMateriaSelect->getId() == $idMateria) ? 'selected' : ''; ?>><?php echo $oMateriaSelect->getNombre(); ?></option>
