@@ -7,9 +7,19 @@ include_once ROOT_DIR . '/entidades/universidad.php';
 include_once ROOT_DIR . '/entidades/materia.php';
 include_once ROOT_DIR . '/entidades/documento.php';
 
+$perpage = 12;
+$total_results = 0;
+if (!isset($_GET['pag'])) {
+    $page = 1;
+} else {
+    $page = $_GET['pag'];
+}
+$from = (($page * $perpage - $perpage));
+
 $servicios = new Servicios();
 
-$vDocumentos = $servicios->getDocumentos();
+$vDocumentos = $servicios->getDocumentosPag($from, $perpage);
+$total_results = count($servicios->getDocumentos());
 ?>
 
 <html>
@@ -29,6 +39,9 @@ $vDocumentos = $servicios->getDocumentos();
                     <h1 id="consultar-texto">DOCUMENTOS</h1>
                 </div>
                 <div id="centro">
+                    <a href="documentos_alta.php">
+                        <input type="button" class="textbox" value="Nuevo documento" style="margin-top:20px;">
+                    </a>
                     <table width="85%" style="margin: 40px auto; border: solid 1px #000">
                         <tr>
                             <td style="width: 10%;">Código</td>
@@ -58,10 +71,35 @@ $vDocumentos = $servicios->getDocumentos();
                             </tr>
                         <?php } ?>
                     </table>
-                    <a href="documentos_alta.php">
-                        <input type="button" class="textbox" value="Nuevo documento">
-                    </a>
                     <br/>
+                    <div id="tnt_pagination" style="clear: both;text-align: center;margin-bottom: 20px;">
+                        <?php
+                        //PAGINACION
+                        $total_pages = ceil($total_results / $perpage);
+                        if ($page > 1) {
+                            $prev = ($page - 1);
+                            echo '<a href="?pag=' . $prev . '">&lt;&lt;</a>';
+                        } elseif ($total_pages == 1 || $page == 1) {
+                            echo '<span class="disabled_tnt_pagination"><<</span>';
+                        }
+
+                        for ($i = 1; $i <= $total_pages; $i++) {
+                            if ($page == $i) {
+                                echo '<a href="#"><b> ' . $i . ' </b></a>';
+                            } else {
+                                echo '<a href="?pag=' . $i . '"> ' . $i . ' </a>';
+                            }
+                        }
+
+                        if ($page < $total_pages) {
+                            $next = ($page + 1);
+                            echo '<a href="?pag=' . $next . '"> >></a>';
+                        }
+                        if ($page == $total_pages) {
+                            echo '<span class="disabled_tnt_pagination">>></span>';
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
 

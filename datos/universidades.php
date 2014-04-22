@@ -26,7 +26,7 @@ class DataUniversidades extends Data implements UniversidadesRepository {
         $stmt->execute();
         $stmt->close();
     }
-    
+
     public function deleteUniversidad(Universidad $oUniversidad) {
         $non_query = "DELETE FROM universidades WHERE id_universidad=?";
         $stmt = $this->prepareStmt($non_query);
@@ -52,6 +52,23 @@ class DataUniversidades extends Data implements UniversidadesRepository {
 
     public function getUniversidades() {
         $query = "SELECT * FROM universidades ORDER BY id_universidad DESC";
+        $stmt = $this->prepareStmt($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $vUniversidades = array();
+        $index = 0;
+        while ($row = $result->fetch_assoc()) {
+            $oUniversidad = $this->generaUniversidad($row);
+            $vUniversidades[$index] = $oUniversidad;
+            $index++;
+        };
+        $stmt->close();
+        return $vUniversidades;
+    }
+
+    public function getUniversidadesPag($from, $perpage) {
+        $query = "SELECT * FROM universidades ORDER BY id_universidad DESC LIMIT $from,$perpage";
         $stmt = $this->prepareStmt($query);
         $stmt->execute();
         $result = $stmt->get_result();

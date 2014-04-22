@@ -54,6 +54,11 @@ class Servicios {
         return $this->carrerasRepository->getUniversidades();
     }
 
+    public function getUniversidadesPag($from, $perpage) {
+        $this->carrerasRepository = new DataUniversidades();
+        return $this->carrerasRepository->getUniversidadesPag($from, $perpage);
+    }
+
     public function insertCarrera($oCarrera) {
         $this->carrerasRepository = new DataCarreras();
         $this->carrerasRepository->insertCarrera($oCarrera);
@@ -77,6 +82,11 @@ class Servicios {
     public function getCarreras() {
         $this->carrerasRepository = new DataCarreras();
         return $this->carrerasRepository->getCarreras();
+    }
+
+    public function getCarrerasPag($from, $perpage) {
+        $this->carrerasRepository = new DataCarreras();
+        return $this->carrerasRepository->getCarrerasPag($from, $perpage);
     }
 
     public function getCarrerasByIdUniversidad($idUniversidad) {
@@ -108,13 +118,18 @@ class Servicios {
         $this->materiasRepository = new DataMaterias();
         return $this->materiasRepository->getMaterias();
     }
-    
+
+    public function getMateriasPag($from, $perpage) {
+        $this->materiasRepository = new DataMaterias();
+        return $this->materiasRepository->getMateriasPag($from, $perpage);
+    }
+
     public function getMateriasByIdCarrera($idCarrera) {
         $this->materiasRepository = new DataMaterias();
         return $this->materiasRepository->getMateriasByIdCarrera($idCarrera);
     }
-    
-    public function getMateriasByIdCarreraAnio($idCarrera,$anioMateria) {
+
+    public function getMateriasByIdCarreraAnio($idCarrera, $anioMateria) {
         $this->materiasRepository = new DataMaterias();
         return $this->materiasRepository->getMateriasByIdCarreraAnio($idCarrera, $anioMateria);
     }
@@ -142,6 +157,11 @@ class Servicios {
     public function getDocumentos() {
         $this->documentosRepository = new DataDocumentos();
         return $this->documentosRepository->getDocumentos();
+    }
+
+    public function getDocumentosPag($from, $perpage) {
+        $this->documentosRepository = new DataDocumentos();
+        return $this->documentosRepository->getDocumentosPag($from, $perpage);
     }
 
     public function getDocumentosByIdMateria($idMateria) {

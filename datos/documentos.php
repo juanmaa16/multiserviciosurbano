@@ -68,6 +68,23 @@ class DataDocumentos extends Data implements DocumentosRepository {
         $stmt->close();
         return $vDocumentos;
     }
+    
+    public function getDocumentosPag($from,$perpage) {
+        $query = "SELECT * FROM documentos ORDER BY documento_fecha DESC LIMIT $from,$perpage";
+        $stmt = $this->prepareStmt($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $vDocumentos = array();
+        $index = 0;
+        while ($row = $result->fetch_assoc()) {
+            $oDocumento = $this->generaDocumento($row);
+            $vDocumentos[$index] = $oDocumento;
+            $index++;
+        };
+        $stmt->close();
+        return $vDocumentos;
+    }
 
     public function getDocumentosByIdMateria($idMateria) {
         $query = "SELECT * FROM documentos WHERE id_materia=? ORDER BY id_documento DESC";
