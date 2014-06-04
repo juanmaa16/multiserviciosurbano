@@ -139,9 +139,9 @@ class Servicios {
         $this->documentosRepository->insertDocumento($oDocumento);
     }
 
-    public function updateDocumento($oDocumento) {
+    public function updateDocumento($oDocumento, $idDocumento) {
         $this->documentosRepository = new DataDocumentos();
-        $this->documentosRepository->updateDocumento($oDocumento);
+        $this->documentosRepository->updateDocumento($oDocumento, $idDocumento);
     }
 
     public function deleteDocumento($oDocumento) {

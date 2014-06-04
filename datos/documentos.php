@@ -20,11 +20,11 @@ class DataDocumentos extends Data implements DocumentosRepository {
         $stmt->close();
     }
 
-    public function updateDocumento(Documento $oDocumento) {
-        $non_query = "UPDATE documentos SET documento_path=?,documento_nombre=?,documento_nombre_archivo=?,
+    public function updateDocumento(Documento $oDocumento, $idDocumento) {
+        $non_query = "UPDATE documentos SET id_documento=?,documento_path=?,documento_nombre=?,documento_nombre_archivo=?,
             documento_fecha=?,documento_nro_paginas=?,id_materia=? WHERE id_documento=?";
         $stmt = $this->prepareStmt($non_query);
-        $stmt->bind_param('ssssiis', $oDocumento->getPath(), $oDocumento->getNombre(), $oDocumento->getNombreArchivo(), $oDocumento->getFecha(), $oDocumento->getPaginas(), $oDocumento->getIdMateria(), $oDocumento->getId());
+        $stmt->bind_param('sssssiis', $oDocumento->getId(), $oDocumento->getPath(), $oDocumento->getNombre(), $oDocumento->getNombreArchivo(), $oDocumento->getFecha(), $oDocumento->getPaginas(), $oDocumento->getIdMateria(), $idDocumento);
         $stmt->execute();
         $stmt->close();
     }
@@ -68,9 +68,9 @@ class DataDocumentos extends Data implements DocumentosRepository {
         $stmt->close();
         return $vDocumentos;
     }
-    
-    public function getDocumentosPag($from,$perpage) {
-        $query = "SELECT * FROM documentos ORDER BY documento_fecha DESC LIMIT $from,$perpage";
+
+    public function getDocumentosPag($from, $perpage) {
+        $query = "SELECT * FROM documentos ORDER BY id_documento DESC LIMIT $from,$perpage";
         $stmt = $this->prepareStmt($query);
         $stmt->execute();
         $result = $stmt->get_result();

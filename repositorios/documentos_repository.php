@@ -4,7 +4,7 @@ interface DocumentosRepository {
 
     public function insertDocumento(Documento $oDocumento);
 
-    public function updateDocumento(Documento $oDocumento);
+    public function updateDocumento(Documento $oDocumento, $idDocumento);
 
     public function deleteDocumento(Documento $oDocumento);
 

@@ -44,7 +44,7 @@ $total_results = count($servicios->getDocumentos());
                     </a>
                     <table width="85%" style="margin: 40px auto; border: solid 1px #000">
                         <tr>
-                            <td style="width: 10%;">Código</td>
+                            <td style="width: 100%;">Código</td>
                             <td style="width: 20%;">Nombre</td>
                             <td style="width: 20%;">Materia</td>
                             <td style="width: 20%;">Carrera</td>
@@ -64,8 +64,8 @@ $total_results = count($servicios->getDocumentos());
                                 <td><?php echo $oCarrera->getNombre(); ?></td>
                                 <td><?php echo $oUniversidad->getNombre(); ?></td>
                                 <td>
-                                    <!--<a href="documentos_edicion.php?id=<?php echo $oDocumento->getId(); ?>"><img src="../images/edit.png"/></a>--> 
-                                    <a href="#"><img src="../images/edit.png"/></a> 
+                                    <a href="documentos_edicion.php?id=<?php echo $oDocumento->getId(); ?>"><img src="../images/edit.png"/></a> 
+                                    <!--<a href="#"><img src="../images/edit.png"/></a>--> 
                                     <a href="documentos_abm.php?action=del&id=<?php echo $oDocumento->getId(); ?>"><img src="../images/delete.png"/></a>
                                 </td>
                             </tr>
