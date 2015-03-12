@@ -1,0 +1,131 @@
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  background: #d6d6d6; /* Old browsers */
+}
+header{
+  background-color: #0088B2;
+  height: 150px;
+}
+h2, h3 {
+  color: #000;
+}
+th{
+  background-color: #E6EAEB;
+}
+p{
+  font-family: 'Montserrat', sans-serif;
+  color: #FFFFFF;
+  font-size: 14px;
+}
+img.carousel{
+  width: 100%;
+}
+td.td-cd{
+  width: 15%;
+}
+.td-width-name{
+  width: 55%;
+}
+.footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #0088B2;
+}
+.table{
+  background-color: #fff;
+}
+.background-color-jumbotron{
+	background-color: #FFFFFF !important;
+}
+.container-sep{
+  margin-top: 20px;
+}
+.big-p{
+  font-size: 16px;
+}
+.jumbotron{
+	color: #000;
+	font-size: 5px;
+  background-color: #FFFFFF; 
+}
+.jumbotron p{
+  color: #000;
+  font-size: 15px;
+}
+.img-align{
+	padding-top: 20px;
+  padding-left: 5px;
+}
+.texto{
+	font-family: 'Montserrat', sans-serif;
+  font-size: 48px;
+  color: #FFFFFF;
+}
+.table_texto{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 48px;
+  color: #FFFFFF;
+}
+.texto-footer{
+	font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: #FFFFFF;
+  text-align: right;
+  padding-top: 20px;
+}
+.ie-text{
+  color:#000;
+}
+.bold-option{
+  text-shadow: 0px 0px 0px black;
+}
+#lupa {
+       background : url('../img/lupa.png') no-repeat center;
+        width : 52px; 
+        height : 52px; 
+        border : none;
+        color: transparent;
+ }
+@media (min-width: 120px) and (max-width: 990px) {
+  .resp{
+    width: 100% !important;
+  }
+}
+@media (max-width: 800px) {
+  .texto-footer{
+  	text-align: center;
+  }
+}
+@media (min-width: 600px ){
+  .img-cel{padding-left:20px;}
+}
+
+@media (max-width: 740px) {
+  h3{
+    font-size: 20px;
+  }
+  .img-cel{
+    
+    
+  }
+}
+
+
+
+
+
+
+
+
+
